@@ -7,13 +7,14 @@ import Chart, {
 } from "chart.js/auto";
 
 import { getUsersAndMinutes } from "../lib/get-user-and-minutes";
+import { chartData } from "./data";
 
-export const Bar = () => {
+export const ChartBar = () => {
   const canvasNode = useRef<HTMLCanvasElement | null>(null);
   const [time, setTime] = useState<"m" | "h">("m");
 
   const setTicks = useCallback(() => {
-    setTime((prevState) => (prevState == "m" ? "h" : "m"));
+    setTime((prevState) => (prevState === "m" ? "h" : "m"));
   }, []);
 
   const chartConfig = useMemo(
@@ -31,7 +32,7 @@ export const Bar = () => {
         },
         scales: {
           y: {
-            max: time == "m" ? 9300 : 200,
+            max: time === "m" ? 9300 : 200,
             ticks: {
               callback: (value: string | number) =>
                 `${value} ${time === "m" ? "мин" : "ч"}`,
@@ -41,13 +42,13 @@ export const Bar = () => {
       },
 
       data: {
-        labels: getUsersAndMinutes().map((item) => item.user.name),
+        labels: getUsersAndMinutes(chartData).map((item) => item.user.name),
         datasets: [
           {
             label: `Количество списанных ${
               time === "m" ? "минут" : "часов"
             } за сентябрь (кликни на диаграммку)`,
-            data: getUsersAndMinutes().map((item) =>
+            data: getUsersAndMinutes(chartData).map((item) =>
               time === "m" ? item.minutes : Math.floor(item.minutes / 60)
             ),
             backgroundColor: [

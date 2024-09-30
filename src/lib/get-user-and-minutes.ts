@@ -1,13 +1,14 @@
-import { data } from "../data";
+// import { chartData } from "../chartjs-dashboards/data";
 
-export const getUsersAndMinutes = (): {
+export const getUsersAndMinutes = (
+  data: any[]
+): {
   user: {
     id: string;
     name: string;
   };
   minutes: number;
 }[] => {
-  //   const array = [];
   const usersArray = data.map((item) => ({
     id: item.user.id,
     name: item.user.displayValue.substring(
@@ -29,6 +30,6 @@ export const getUsersAndMinutes = (): {
       .reduce<number>((sum, item) => (sum += item.minutes), 0);
     return { user: user, minutes: minutes };
   });
-  console.log("🚀 ~ getUsersAndMinutes ~ users:", users, array);
+
   return array;
 };

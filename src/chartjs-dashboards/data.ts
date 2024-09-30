@@ -1,4 +1,4 @@
-export const data = [
+export const chartData = [
   {
     minutes: 60,
     user: {

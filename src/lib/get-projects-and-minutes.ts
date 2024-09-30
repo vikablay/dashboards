@@ -1,4 +1,4 @@
-import { data } from "../data";
+import { chartData } from "../chartjs-dashboards/data";
 
 export const getProjectssAndMinutes = (): {
   project: {
@@ -8,7 +8,7 @@ export const getProjectssAndMinutes = (): {
   minutes: number;
 }[] => {
   //   const array = [];
-  const projectsArray = data.reduce<
+  const projectsArray = chartData.reduce<
     {
       id: string;
       name: string;
@@ -30,7 +30,7 @@ export const getProjectssAndMinutes = (): {
   });
   // Array.from(new Set(usersArray));
   const array = projects.map((project) => {
-    const minutes = data
+    const minutes = chartData
       .filter((item) => item.smrProjects?.id === project.id)
       .reduce<number>((sum, item) => (sum += item.minutes), 0);
     return { project: project, minutes: minutes };
