@@ -32,7 +32,7 @@ export const ChartBar = () => {
         },
         scales: {
           y: {
-            max: time === "m" ? 9300 : 200,
+            max: time === "m" ? 9300 : 160,
             ticks: {
               callback: (value: string | number) =>
                 `${value} ${time === "m" ? "мин" : "ч"}`,

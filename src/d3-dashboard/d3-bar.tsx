@@ -30,7 +30,7 @@ export const D3Bar = () => {
       .attr("width", xScale.bandwidth())
       .attr("height", (d) => height - yScale(d.minutes))
       .attr("transform", "translate(30, 10)")
-      .attr("fill", "steelblue");
+      .attr("fill", "rgba(75, 192, 192, 1)");
 
     // Create x-axis
     const xAxis = d3.axisBottom(xScale);
